@@ -25,7 +25,6 @@ exports.setTinfoil = function setTinfoil(email, cb) {
     config.unique_id = '';
     config.tinfoil = true;
   }
-  console.log(config);
   fs.writeFile(path.join(osenv.home(), '.famousrc'), JSON.stringify(config, undefined, 2), cb);
 };
 
@@ -41,7 +40,6 @@ exports.track = function track(event, data, cb) {
 
   if (!config.tinfoil) {
     data.distinct_id = config.unique_id;
-    console.log(data);
     mixpanel.track(event, data, cb);
   } else {
     console.warn('User has not opted into tracking. Aborting ...');
