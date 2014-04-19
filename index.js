@@ -8,7 +8,7 @@ var path = require('path');
 
 var config = rc('famous', {
   unique_id: '',
-  tinfoil: true
+  tinfoil: null
 });
 
 // get old config value
