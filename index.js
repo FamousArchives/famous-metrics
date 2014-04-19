@@ -1,4 +1,4 @@
-var mixpanelId = '1ca6a3146db8e6b46af00d0ce399260e';
+var mixpanelId = '1ca6a3146db8e6b46af00d0ce399260e ';
 var mixpanel = require('mixpanel').init(mixpanelId);
 var rc = require('rc');
 var crypto = require('crypto');
@@ -11,7 +11,13 @@ var config = rc('famous', {
   tinfoil: true
 });
 
-exports.setTinfoil = function (email, cb) {
+// get old config value
+if (typeof config.noTinfoil === "boolean") {
+  config.tinfoil = config.noTinfoil;
+  delete config.noTinfoil;
+}
+
+exports.setTinfoil = function setTinfoil(email, cb) {
   if (email || !(email instanceof Function)) {
     config.unique_id = crypto.createHash('sha256').update(email).digest('base64');
     config.tinfoil = false;
@@ -19,14 +25,15 @@ exports.setTinfoil = function (email, cb) {
     config.unique_id = '';
     config.tinfoil = true;
   }
+  console.log(config);
   fs.writeFile(path.join(osenv.home(), '.famousrc'), JSON.stringify(config, undefined, 2), cb);
 };
 
-exports.getTinfoil = function () {
+exports.getTinfoil = function getTinfoil() {
   return config.tinfoil;
 };
 
-exports.track = function (event, data, cb) {
+exports.track = function track(event, data, cb) {
   if (data instanceof Function) {
     cb = data;
     data = {};
@@ -34,6 +41,7 @@ exports.track = function (event, data, cb) {
 
   if (!config.tinfoil) {
     data.distinct_id = config.unique_id;
+    console.log(data);
     mixpanel.track(event, data, cb);
   } else {
     console.warn('User has not opted into tracking. Aborting ...');
