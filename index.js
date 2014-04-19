@@ -18,7 +18,7 @@ if (typeof config.noTinfoil === "boolean") {
 }
 
 exports.setTinfoil = function setTinfoil(email, cb) {
-  if (email || !(email instanceof Function)) {
+  if (typeof email === 'string') {
     config.unique_id = crypto.createHash('sha256').update(email).digest('base64');
     config.tinfoil = false;
   } else {
