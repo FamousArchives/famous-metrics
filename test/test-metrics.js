@@ -1,8 +1,7 @@
 var test = require('tape');
+var metrics = require('../index.js');
 
 test('Does it load?',  function (t) {
-  var metrics = require('../index.js');
-  
   t.ok(metrics, "It loads!!!");
   t.end();
 });
