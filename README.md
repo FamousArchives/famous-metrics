@@ -1,5 +1,6 @@
 famous-metrics
 ==============
+[![Build Status](https://travis-ci.org/Famous/famous-metrics.svg)](https://travis-ci.org/Famous/famous-metrics) [![Dependency Status](https://david-dm.org/Famous/famous-metrics.svg)](https://david-dm.org/Famous/famous-metrics) [![devDependency Status](https://david-dm.org/Famous/famous-metrics/dev-status.svg)](https://david-dm.org/Famous/famous-metrics#info=devDependencies)
 
 This module tracks metrics data related to usage of Famo.us tools. This module exposes three interfaces:
 
