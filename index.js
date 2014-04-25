@@ -1,3 +1,4 @@
+'use strict';
 var mixpanelId = '1ca6a3146db8e6b46af00d0ce399260e ';
 var mixpanel = require('mixpanel').init(mixpanelId);
 var rc = require('rc');
@@ -12,13 +13,16 @@ var config = rc('famous', {
 });
 
 // get old config value
-if (typeof config.noTinfoil === "boolean") {
+if (typeof config.noTinfoil === 'boolean') {
   config.tinfoil = config.noTinfoil;
   delete config.noTinfoil;
 }
 
-exports.setTinfoil = function setTinfoil(email, cb) {
+var setTinfoil = exports.setTinfoil = function setTinfoil(email, cb) {
   if (typeof email === 'string') {
+    if (email === '') {
+      email = osenv.hostname();
+    }
     config.unique_id = crypto.createHash('sha256').update(email).digest('base64');
     config.tinfoil = false;
   } else {
@@ -29,6 +33,9 @@ exports.setTinfoil = function setTinfoil(email, cb) {
 };
 
 exports.getTinfoil = function getTinfoil() {
+  if (config.unique_id === '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=') {
+    setTinfoil('');
+  }
   return config.tinfoil;
 };
 
