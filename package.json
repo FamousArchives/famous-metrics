@@ -4,7 +4,7 @@
   "description": "Metrics collection for Famous Tools",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/eslint index.js && ./node_modules/.bin/tape test/*"
   },
   "author": "Andrew de Andrade <andrew@famo.us>",
   "license": "MPL-2.0",
@@ -12,5 +12,9 @@
     "mixpanel": "0.0.19",
     "rc": "^0.3.5",
     "osenv": "0.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^0.5.1",
+    "tape": "^2.12.3"
   }
 }

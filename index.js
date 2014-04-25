@@ -1,3 +1,4 @@
+'use strict';
 var mixpanelId = '1ca6a3146db8e6b46af00d0ce399260e ';
 var mixpanel = require('mixpanel').init(mixpanelId);
 var rc = require('rc');
@@ -12,7 +13,7 @@ var config = rc('famous', {
 });
 
 // get old config value
-if (typeof config.noTinfoil === "boolean") {
+if (typeof config.noTinfoil === 'boolean') {
   config.tinfoil = config.noTinfoil;
   delete config.noTinfoil;
 }
