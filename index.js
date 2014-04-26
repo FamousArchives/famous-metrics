@@ -9,6 +9,7 @@ var path = require('path');
 
 var config = rc('famous', {
   unique_id: '',
+  platform: process.platform,
   tinfoil: null
 });
 
@@ -33,6 +34,7 @@ var setTinfoil = exports.setTinfoil = function setTinfoil(email, cb) {
 };
 
 exports.getTinfoil = function getTinfoil() {
+  // If they have the sha256 of '' then rerun setTinfoil
   if (config.unique_id === '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=') {
     setTinfoil('');
   }
@@ -47,6 +49,7 @@ exports.track = function track(event, data, cb) {
 
   if (!config.tinfoil) {
     data.distinct_id = config.unique_id;
+    data.platform = config.platform;
     mixpanel.track(event, data, cb);
   } else {
     console.warn('User has not opted into tracking. Aborting ...');
