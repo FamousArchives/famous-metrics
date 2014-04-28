@@ -23,6 +23,9 @@ var setTinfoil = exports.setTinfoil = function setTinfoil(email, cb) {
   if (typeof email === 'string') {
     if (email === '') {
       email = osenv.hostname();
+      if (typeof email === undefined) {
+        email =  Math.floor(Date.now() * Math.random());
+      }
     }
     config.unique_id = crypto.createHash('sha256').update(email).digest('base64');
     config.tinfoil = false;
