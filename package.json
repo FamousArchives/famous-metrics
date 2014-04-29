@@ -1,6 +1,6 @@
 {
   "name": "famous-metrics",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Metrics collection for Famous Tools",
   "main": "index.js",
   "scripts": {
