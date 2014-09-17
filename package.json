@@ -9,12 +9,12 @@
   "author": "Andrew de Andrade <andrew@famo.us>",
   "license": "MPL-2.0",
   "dependencies": {
-    "mixpanel": "0.0.19",
-    "rc": "^0.3.5",
-    "osenv": "0.0.3"
+    "mixpanel": "0.0.20",
+    "osenv": "^0.1.0",
+    "rc": "^0.5.1"
   },
   "devDependencies": {
-    "eslint": "^0.5.1",
-    "tape": "^2.12.3"
+    "eslint": "^0.8.1",
+    "tape": "^3.0.0"
   }
 }
