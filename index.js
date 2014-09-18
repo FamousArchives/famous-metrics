@@ -10,35 +10,39 @@ var path = require('path');
 var config = rc('famous', {
   unique_id: '',
   platform: process.platform,
-  tinfoil: null
+  tracking: null
 });
 
 // get old config value
 if (typeof config.noTinfoil === 'boolean') {
-  config.tinfoil = config.noTinfoil;
   delete config.noTinfoil;
 }
 
-var setTinfoil = exports.setTinfoil = function setTinfoil(email, cb) {
+if (typeof config.tinfoil === 'boolean') {
+  delete config.tinfoil;
+}
+
+var setTracking = exports.setTracking = function setTracking(email, cb) {
   if (typeof email === 'string') {
     if (email === '') {
       email =  Math.floor(Date.now() * Math.random()).toString();
     }
     config.unique_id = crypto.createHash('sha256').update(email).digest('base64');
-    config.tinfoil = false;
-  } else {
+    config.tracking = true;
+  }
+  else {
     config.unique_id = '';
-    config.tinfoil = true;
+    config.tracking = false;
   }
   fs.writeFile(path.join(osenv.home(), '.famousrc'), JSON.stringify(config, undefined, 2), cb);
 };
 
-exports.getTinfoil = function getTinfoil() {
+exports.getTracking = function getTracking() {
   // If they have the sha256 of '' then rerun setTinfoil
   if (config.unique_id === '47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=') {
-    setTinfoil('');
+    setTracking('');
   }
-  return config.tinfoil;
+  return config.tracking;
 };
 
 exports.track = function track(event, data, cb) {
@@ -47,11 +51,12 @@ exports.track = function track(event, data, cb) {
     data = {};
   }
 
-  if (!config.tinfoil) {
+  if (config.tracking) {
     data.distinct_id = config.unique_id;
     data.platform = config.platform;
     mixpanel.track(event, data, cb);
-  } else {
-    console.warn('User has not opted into tracking. Aborting ...');
+  }
+  else {
+    cb(new Error('User has not opted into tracking. Aborting ...'));
   }
 };
