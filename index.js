@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 'use strict';
 var mixpanelId = '1ca6a3146db8e6b46af00d0ce399260e ';
 var mixpanel = require('mixpanel').init(mixpanelId);
