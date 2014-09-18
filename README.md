@@ -4,11 +4,11 @@ famous-metrics
 
 This module tracks metrics data related to usage of Famo.us tools. This module exposes three interfaces:
 
-* getTinfoil: Returns true if the user has not opted into tracking and false if they have.
+* getTracking: Returns true if the user has opted into tracking and false if they have opted out.
 
-* setTinfoil: Accepts an email address and a callback. The email will be hashed and included with tracking information. If you pass in false instead of an email or no email string, then tracking is disabled.
+* setTracking: Accepts an email address and a callback. The email will be hashed and included with tracking information. If you pass in false instead of an email or no email string, then tracking is disabled.
 
-* track: Accepts a string with the name of the event and any additional data to be tracked. Will print a warning to the console if the user has not opted into famous.
+* track: Accepts a string with the name of the event and any additional data to be tracked. Will return an error in the callback if user has not opted into tracking
 
 License
 -------
