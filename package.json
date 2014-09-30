@@ -20,5 +20,16 @@
     "rimraf": "^2.2.8",
     "tap-spec": "^1.0.0",
     "tape": "^3.0.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FamousTools/famous-metrics.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FamousTools/famous-metrics/issues"
+  },
+  "homepage": "https://github.com/FamousTools/famous-metrics"
 }
