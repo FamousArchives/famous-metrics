@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "async": "^0.9.0",
-    "eslint": "^0.8.1",
+    "eslint": "^0.8.2",
     "mkdirp": "^0.5.0",
     "rimraf": "^2.2.8",
     "tap-spec": "^1.0.0",
