@@ -29,7 +29,7 @@ if (typeof config.tinfoil === 'boolean') {
 var setTracking = exports.setTracking = function setTracking(email, cb) {
   if (typeof email === 'string') {
     if (email === '') {
-      email =  Math.floor(Date.now() * Math.random()).toString();
+      email = Math.floor(Date.now() * Math.random()).toString();
     }
     config.unique_id = crypto.createHash('sha256').update(email).digest('base64');
     config.tracking = true;
